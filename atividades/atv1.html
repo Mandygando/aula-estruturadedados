@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios JavaScript</title>
+</head>
+<body>
+
+<script>
+    // 1. Solicitar o nome do usuário e exibir uma mensagem de boas vindas
+    function boasVindas() {
+        var nome = prompt('Informe seu nome:', '');
+        alert('Olá, ' + nome + '! Bem-vindo(a)!');
+        return nome;
+    }
+
+    // 2. Verificar se a idade é par ou ímpar
+    function verificarParImpar(idade) {
+        if (idade % 2 === 0) {
+            return 'par';
+        } else {
+            return 'ímpar';
+        }
+    }
+
+    // 3. Imprimir todos os anos, do ano atual até o ano de nascimento
+    function imprimirAnos(anoNascimento) {
+        var anoAtual = new Date().getFullYear();
+        console.log('Anos desde o seu nascimento até o ano atual:');
+        for (var ano = anoNascimento; ano <= anoAtual; ano++) {
+            console.log(ano);
+        }
+    }
+
+    // 4. Contar quantas pessoas são maiores ou menores de 18 anos
+    function contarIdades() {
+        var maioresDeIdade = 0;
+        var menoresDeIdade = 0;
+        for (var i = 0; i < 10; i++) {
+            var idadePessoa = parseInt(prompt('Informe a idade da pessoa ' + (i + 1) + ':', ''));
+            if (idadePessoa >= 18) {
+                maioresDeIdade++;
+            } else {
+                menoresDeIdade++;
+            }
+        }
+        console.log('Pessoas maiores de idade: ' + maioresDeIdade);
+        console.log('Pessoas menores de idade: ' + menoresDeIdade);
+    }
+
+    // 5. Classe Aluno com propriedades nome, idade e peso
+    class Aluno {
+        constructor(nome, idade, peso) {
+            this.nome = nome;
+            this.idade = idade;
+            this.peso = peso;
+        }
+    }
+
+    function main() {
+        var nomeUsuario = boasVindas();
+        var idadeUsuario = parseInt(prompt('Informe sua idade:', ''));
+        console.log('Sua idade é ' + verificarParImpar(idadeUsuario) + '.');
+        imprimirAnos(new Date().getFullYear() - idadeUsuario);
+        contarIdades();
+        
+        var meuAluno = new Aluno(nomeUsuario, idadeUsuario, 48); 
+        console.log('Nome: ' + meuAluno.nome);
+        console.log('Idade: ' + meuAluno.idade);
+        console.log('Peso: ' + meuAluno.peso);
+    }
+
+    main();
+</script>
+
+</body>
+</html>
