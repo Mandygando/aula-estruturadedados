@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 2</title>
+</head>
+<body>
+    <script>
+        // Função para converter número decimal em hexadecimal
+        function decimalToHexadecimal(decimal) {
+            return decimal.toString(16).toUpperCase();
+        }
+
+        // Exercício 01
+        function exercicio01() {
+            let array = [];
+            for (let i = 0; i < 2; i++) {
+                array.push(parseInt(prompt("Exercício 01: Digite um número")));
+            }
+            console.log("Exercício 01:", sortArray(array));
+        }
+
+        // Exercício 02
+        function exercicio02() {
+            let array = [];
+            for (let i = 0; i < 3; i++) {
+                array.push(parseInt(prompt("Exercício 02: Digite um número")));
+            }
+            console.log("Exercício 02:", sortArrayThree(array));
+        }
+
+        // Exercício 03
+        function exercicio03() {
+            let array = [];
+            for (let i = 0; i < 3; i++) {
+                array.push(parseInt(prompt("Exercício 03: Digite um número")));
+            }
+            console.log("Exercício 03:", reverseArray(array));
+        }
+
+        // Exercício 04
+        function exercicio04() {
+            let array = [];
+            for (let i = 0; i < 7; i++) {
+                array.push(parseInt(prompt("Exercício 04: Digite um número")));
+            }
+            let numberToFind = parseInt(prompt("Exercício 04: Digite o número que deseja encontrar"));
+            console.log("Exercício 04:", findIndexes(array, numberToFind));
+        }
+
+        // Exercício 05
+        function exercicio05() {
+            let n = parseInt(prompt("Exercício 05: Digite um número"));
+            console.log("Exercício 05:", fibonacci(n));
+        }
+
+        // Exercício 06
+        function exercicio06() {
+            let n = parseInt(prompt("Exercício 06: Digite um número"));
+            console.log("Exercício 06:", fatorial(n));
+        }
+
+        // Exercício 07
+        function exercicio07() {
+            let rows = parseInt(prompt("Exercício 07: Digite o número de linhas"));
+            let columns = parseInt(prompt("Exercício 07: Digite o número de colunas"));
+            console.log("Exercício 07:", createMatrix(rows, columns));
+        }
+
+        // Exercício 08
+        function exercicio08() {
+            let decimalNumber = parseInt(prompt("Exercício 08: Digite um número decimal para converter em hexadecimal"));
+            let hexadecimalNumber = decimalToHexadecimal(decimalNumber);
+            console.log("Exercício 08: O número hexadecimal é:", hexadecimalNumber);
+        }
+
+        // Exercício 09
+        function exercicio09() {
+            let array = [];
+            for (let i = 0; i < 10; i++) {
+                array.push(parseInt(prompt("Exercício 09: Digite um número")));
+            }
+            console.log("Exercício 09:");
+            processNumbers(array);
+        }
+
+        // Exercício 10
+        function exercicio10() {
+            let array = [];
+            for (let i = 0; i < 10; i++) {
+                array.push(parseInt(prompt("Exercício 10: Digite um número")));
+            }
+            console.log("Exercício 10:");
+            processNumbersTwoStacks(array);
+        }
+
+        // Funções dos exercícios
+        function sortArray(array) {
+            return array[0] > array[1] ? [array[1], array[0]] : array;
+        }
+
+        function sortArrayThree(array) {
+            if (array[0] > array[1]) [array[0], array[1]] = [array[1], array[0]];
+            if (array[1] > array[2]) [array[1], array[2]] = [array[2], array[1]];
+            if (array[0] > array[1]) [array[0], array[1]] = [array[1], array[0]];
+            return array;
+        }
+
+        function reverseArray(array) {
+            return array.reverse();
+        }
+
+        function findIndexes(array, number) {
+            let indexes = [];
+            array.forEach((element, index) => {
+                if (element === number) {
+                    indexes.push(index);
+                }
+            });
+            return indexes;
+        }
+
+        function fibonacci(n) {
+            let sequence = [0, 1];
+            for (let i = 2; i < n; i++) {
+                sequence[i] = sequence[i - 1] + sequence[i - 2];
+            }
+            return sequence.join(', ');
+        }
+
+        function fatorial(n) {
+            let result = 'Fatorial de ' + n + ': ' + n + '!';
+            if (n === 0) {
+                result += ' = 1';
+            } else {
+                let factorial = 1;
+                for (let i = 1; i <= n; i++) {
+                    factorial *= i;
+                    if (i === 1) {
+                        result += ' = ' + i;
+                    } else {
+                        result += ' x ' + i;
+                    }
+                }
+                result += ' = ' + factorial;
+            }
+            return result;
+        }
+
+        function createMatrix(rows, columns) {
+            let matrix = [];
+            for (let i = 0; i < rows; i++) {
+                let row = [];
+                for (let j = 0; j < columns; j++) {
+                    row.push((i + 1) * (j + 1));
+                }
+                matrix.push(row);
+            }
+            return matrix;
+        }
+
+        function processNumbers(array) {
+            let stack = [];
+            array.forEach(number => {
+                if (number % 2 === 0) {
+                    stack.push(number);
+                } else {
+                    if (stack.length > 0) {
+                        stack.pop();
+                    } else {
+                        console.log('Pilha vazia!');
+                    }
+                }
+            });
+            while (stack.length > 0) {
+                console.log(stack.pop());
+            }
+        }
+
+        function processNumbersTwoStacks(array) {
+            let evenStack = [];
+            let oddStack = [];
+            array.forEach(number => {
+                if (number === 0) {
+                    if (evenStack.length > 0 && oddStack.length > 0) {
+                        evenStack.pop();
+                        oddStack.pop();
+                    } else {
+                        console.log('Uma das pilhas está vazia!');
+                    }
+                } else if (number % 2 === 0) {
+                    evenStack.push(number);
+                } else {
+                    oddStack.push(number);
+                }
+            });
+            while (evenStack.length > 0) {
+                console.log(evenStack.pop());
+            }
+            while (oddStack.length > 0) {
+                console.log(oddStack.pop());
+            }
+        }
+
+        // Chamadas para os exercícios
+        exercicio01();
+        exercicio02();
+        exercicio03();
+        exercicio04();
+        exercicio05();
+        exercicio06();
+        exercicio07();
+        exercicio08();
+        exercicio09();
+        exercicio10();
+    </script>
+</body>
+</html>
